@@ -1,0 +1,7 @@
+ip,risk_score,threat_type,timestamp
+8.8.8.8,14,Limpo / Sem Ameaças Conhecidas,2026-09-02T18:05:51.999708
+192.168.1.50,86,Botnet C&C (Comando e Controle),2026-09-02T18:05:52.299948
+142.250.190.46,7,Limpo / Sem Ameaças Conhecidas,2026-09-02T18:05:52.600369
+203.0.113.42,94,Nó de Phishing Bancário,2026-09-02T18:05:52.900771
+10.0.0.15,16,Limpo / Sem Ameaças Conhecidas,2026-09-02T18:05:53.201344
+198.51.100.23,86,Gateway de Ransomware,2026-09-02T18:05:53.501685
