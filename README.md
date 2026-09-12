@@ -1,6 +1,6 @@
 # Bank SOC Threat Intel Analyzer
 
-## 🛡️ About the Project
+##  About the Project
 This project simulates a real-world workflow of a **SOC (Security Operations Center)** within the financial/banking sector.
 Banks receive millions of requests per second. Analyzing firewall logs manually is impossible. The goal of this Python script is to automate **Threat Intelligence Analysis** and **Incident Response**.
 
@@ -12,12 +12,12 @@ Banks receive millions of requests per second. Analyzing firewall logs manually 
    - If the IP is clean, the traffic is categorized as safe.
 4. **Report Generation:** A CSV report (`soc_incident_report.csv`) is automatically generated for the audit and compliance teams to review.
 
-## 🚀 Technologies and Skills Demonstrated
+##  Technologies and Skills Demonstrated
 - **Language:** Python (Scripting, file manipulation, automation).
 - **Cybersecurity Concepts:** Incident Response, Threat Intelligence, Risk Scoring, SOC Automation.
 - **Compliance & Business:** The project focuses on reducing Cyber Risk and response time (MTTR - *Mean Time To Respond*), which are critical metrics for bank executive management.
 
-## 💻 How to Run
+##  How to Run
 No complex external dependencies are required. The script uses standard Python libraries to simulate a third-party API in a contained environment.
 
 1. Clone this repository.
@@ -28,7 +28,7 @@ No complex external dependencies are required. The script uses standard Python l
    ```
 4. Check the console output and the generated `soc_incident_report.csv` file.
 
-## 📈 Next Steps (Future Improvements)
+##  Next Steps (Future Improvements)
 - [ ] Integrate with the real VirusTotal REST API using the `requests` library.
 - [ ] Connect the output (CSV report) to a Splunk or ELK Stack dashboard.
 - [ ] Add Slack/Microsoft Teams notifications via Webhooks to alert the on-call SOC team.
