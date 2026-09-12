@@ -4,24 +4,24 @@ import datetime
 import csv
 import time
 
-# --- MÓDULO DE INTELIGÊNCIA DE AMEAÇAS ---
+# --- THREAT INTELLIGENCE MODULE ---
 def query_threat_intel(ip_address):
     """
-    Simula uma requisição a uma API de cibersegurança (como VirusTotal, CrowdStrike, ou IBM X-Force).
-    Em um ambiente real corporativo/bancário, usaríamos a biblioteca 'requests' com uma API Key.
+    Simulates a request to a cybersecurity API (like VirusTotal, CrowdStrike, or IBM X-Force).
+    In a real corporate/banking environment, we would use the 'requests' library with an API Key.
     """
-    # Simulando um banco de dados interno de um banco com IPs conhecidos como maliciosos
+    # Simulating a bank's internal database of known malicious IPs
     known_malicious = ['192.168.1.50', '203.0.113.42', '198.51.100.23']
     
-    # Pequeno delay para simular o tempo de resposta da rede
+    # Small delay to simulate network response time
     time.sleep(0.3)
     
     if ip_address in known_malicious:
-        score = random.randint(75, 100) # Score alto indica perigo crítico
-        threat_type = random.choice(["Botnet C&C (Comando e Controle)", "Nó de Phishing Bancário", "Gateway de Ransomware"])
+        score = random.randint(75, 100) # High score indicates critical danger
+        threat_type = random.choice(["Botnet C&C", "Banking Phishing Node", "Ransomware Gateway"])
     else:
-        score = random.randint(0, 20) # Score baixo indica tráfego normal/seguro
-        threat_type = "Limpo / Sem Ameaças Conhecidas"
+        score = random.randint(0, 20) # Low score indicates normal/safe traffic
+        threat_type = "Clean / No Known Threats"
         
     return {
         "ip": ip_address,
@@ -30,12 +30,12 @@ def query_threat_intel(ip_address):
         "timestamp": datetime.datetime.now().isoformat()
     }
 
-# --- MÓDULO DE PROCESSAMENTO DE LOGS DO FIREWALL ---
+# --- FIREWALL LOG PROCESSING MODULE ---
 def process_firewall_logs(input_file, output_file):
     print("="*60)
-    print(" BANCO XYZ - SISTEMA AUTOMATIZADO DE RESPOSTA A INCIDENTES")
+    print(" XYZ BANK - AUTOMATED INCIDENT RESPONSE SYSTEM")
     print("="*60)
-    print(f"[*] Carregando logs suspeitos do firewall: {input_file}\n")
+    print(f"[*] Loading suspicious firewall logs from: {input_file}\n")
     results = []
     
     try:
@@ -46,18 +46,18 @@ def process_firewall_logs(input_file, output_file):
             ip = ip.strip()
             if not ip: continue
             
-            print(f"[*] Analisando IP: {ip}...")
+            print(f"[*] Analyzing IP: {ip}...")
             intel_data = query_threat_intel(ip)
             results.append(intel_data)
             
-            # Lógica de negócio: O Banco só quer ser alertado se o risco for maior que 70
+            # Business logic: The bank only wants alerts if the risk is > 70
             if intel_data['risk_score'] > 70:
-                print(f"    [!] ALERTA CRÍTICO: Risco {intel_data['risk_score']}/100 - Categoria: {intel_data['threat_type']}")
-                print(f"    [!] Ação Automática: Regra de bloqueio aplicada no WAF (Web Application Firewall).\n")
+                print(f"    [!] CRITICAL ALERT: Risk {intel_data['risk_score']}/100 - Category: {intel_data['threat_type']}")
+                print(f"    [!] Automated Action: Blocking rule applied to WAF (Web Application Firewall).\n")
             else:
-                print(f"    [+] IP Seguro. Permitindo tráfego.\n")
+                print(f"    [+] Safe IP. Allowing traffic.\n")
                 
-        # Gerando relatório estruturado (CSV) para a equipe de SOC (Security Operations Center)
+        # Generating structured report (CSV) for the SOC (Security Operations Center) team
         with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
             fieldnames = ['ip', 'risk_score', 'threat_type', 'timestamp']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -67,17 +67,17 @@ def process_firewall_logs(input_file, output_file):
                 writer.writerow(row)
                 
         print("="*60)
-        print(f"[+] Análise concluída com sucesso.")
-        print(f"[+] Relatório gerado para a equipe de SOC em: {output_file}")
+        print(f"[+] Analysis successfully completed.")
+        print(f"[+] Report generated for the SOC team at: {output_file}")
         print("="*60)
         
     except FileNotFoundError:
-        print(f"[-] Erro crítico: O arquivo de log {input_file} não foi encontrado.")
+        print(f"[-] Critical Error: The log file {input_file} was not found.")
 
 if __name__ == "__main__":
-    # Nomes dos arquivos de entrada e saída
+    # Input and output file names
     INPUT_LOG = "suspicious_ips.txt"
     OUTPUT_REPORT = "soc_incident_report.csv"
     
-    # Inicia o pipeline de segurança
+    # Start the security pipeline
     process_firewall_logs(INPUT_LOG, OUTPUT_REPORT)
